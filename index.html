@@ -11,11 +11,19 @@
 		function computerPickAmount(){
 			return Math.floor(Math.random()*3)+1;
 		}
+		function addToTranscript(msg){
+			$("#gamneTranscript").append("<li>"+msg+"</li>");
+		}
 		function pickSticks() {
 			var num = parseInt( $( "#pickNum" ).val() );
 			if(isValidPickNum(num,numSticks)){
 				numSticks-=num;
 				$( "#numSticks" ).text( numSticks );
+				addToTranscript("You pick "+num);
+				computerNum=computerPickAmount();
+				numSticks-=computerNum;
+				$("#numSticks").text(numSticks);
+				addToTranscript("Computer picks "+computerNum);
 			}
 			else{
 				alert("Invalid amount. Please try again")
@@ -28,6 +36,7 @@
 
 	</script>
 	<h1>Get the last one to win!</h1>
+	<ul id="gamneTranscript"></ul>
 	Nunber of stick: <span id="numSticks">21</span><br><br>
 	<input id="pickNum"><button id="pickButton">Pick</button>
 </body>
