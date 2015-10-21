@@ -8,6 +8,9 @@
 		function isValidPickNum(num,numSticks){
 			return ((num>=1)&&(num<=3)&&(num<=numSticks));
 		}
+		function computerPickAmount(){
+			return Math.floor(Math.random()*3)+1;
+		}
 		function pickSticks() {
 			var num = parseInt( $( "#pickNum" ).val() );
 			if(isValidPickNum(num,numSticks)){
