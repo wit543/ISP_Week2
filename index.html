@@ -5,13 +5,20 @@
 	<script src="jquery.js"></script>
 	<script type="text/javascript">
 		var numSticks = 21;
-		
+		function isValidPickNum(num,numSticks){
+			return ((num>=1)&&(num<=3)&&(num<=numSticks));
+		}
 		function pickSticks() {
 			var num = parseInt( $( "#pickNum" ).val() );
-			numSticks -= num;
-			$( "#numSticks" ).text( numSticks );
+			if(isValidPickNum(num,numSticks)){
+				numSticks-=num;
+				$( "#numSticks" ).text( numSticks );
+			}
+			else{
+				alert("Invalid amount. Please try again")
+			}
 		}
-		
+
 		$(function(){
 			$("#pickButton").click(pickSticks);
 		});
