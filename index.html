@@ -33,9 +33,15 @@
 			if(isValidPickNum(num,gameSticks.remainingSticks)){
 				gameSticks.remove(num);
 				addToTranscript("You pick "+num);
+				if(gameSticks.remainingSticks==0){
+					alert("You win");
+				}
 				computerNum=computerPickAmount();
 				gameSticks.remove(computerNum);
 				addToTranscript("Computer picks "+computerNum);
+				if(gameSticks.remainingSticks==0){
+					alert("computer win");
+				}
 			}
 			else{
 				alert("Invalid amount. Please try again")
