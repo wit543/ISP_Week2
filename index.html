@@ -1,21 +1,24 @@
 <!doctype html>
 <html lang="en">
 <body>
- 
-<script src="jquery.js"></script>
-<script type="text/javascript">
-var numStick =21;
-function pickStick () {
-	
-}
-$(function(){
-	$(function(){
-		$("#pickButton").click(pickStick);
-	})
-})
-</script>
-<h1>Get the last one to win!</h1>
-Nunber of stick: 21<br>
-<input id="pickNum"><button id="pickButton">Pick</button>
+
+	<script src="jquery.js"></script>
+	<script type="text/javascript">
+		var numSticks = 21;
+		
+		function pickSticks() {
+			var num = parseInt( $( "#pickNum" ).val() );
+			numSticks -= num;
+			$( "#numSticks" ).text( numSticks );
+		}
+		
+		$(function(){
+			$("#pickButton").click(pickSticks);
+		});
+
+	</script>
+	<h1>Get the last one to win!</h1>
+	Nunber of stick: <span id="numSticks">21</span><br><br>
+	<input id="pickNum"><button id="pickButton">Pick</button>
 </body>
 </html>
