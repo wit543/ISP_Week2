@@ -4,7 +4,17 @@
 
 	<script src="jquery.js"></script>
 	<script type="text/javascript">
-		var numSticks = 21;
+		var gameSticks = {
+			remainingSticks:21,
+			remove: function(n){
+				this.remainingSticks-=n;
+				var sticks ="";
+				for(var i =0;i<this.remainingSticks;i++){
+					sticks+="|";
+				}
+				$("#numSticks").text(sticks);
+			}
+		}
 		function isValidPickNum(num,numSticks){
 			return ((num>=1)&&(num<=3)&&(num<=numSticks));
 		}
@@ -16,13 +26,11 @@
 		}
 		function pickSticks() {
 			var num = parseInt( $( "#pickNum" ).val() );
-			if(isValidPickNum(num,numSticks)){
-				numSticks-=num;
-				$( "#numSticks" ).text( numSticks );
+			if(isValidPickNum(num,gameSticks.remainingSticks)){
+				gameSticks.remove(num);
 				addToTranscript("You pick "+num);
 				computerNum=computerPickAmount();
-				numSticks-=computerNum;
-				$("#numSticks").text(numSticks);
+				gameSticks.remove(computerNum);
 				addToTranscript("Computer picks "+computerNum);
 			}
 			else{
@@ -37,7 +45,7 @@
 	</script>
 	<h1>Get the last one to win!</h1>
 	<ul id="gamneTranscript"></ul>
-	Nunber of stick: <span id="numSticks">21</span><br><br>
+	Nunber of stick: <span id="numSticks">||||||||||||||||||||</span><br><br>
 	<input id="pickNum"><button id="pickButton">Pick</button>
 </body>
 </html>
